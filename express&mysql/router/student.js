@@ -6,17 +6,24 @@ const express = require('express');
 const controller = require('../controller/controller')
 const router = express.Router();
 
-router.get('/',controller.getStudent);
+//获取所有学生信息
+router.get('/student',controller.getAllStudent);
+//获取单个学生信息
+router.get('/student/:id',controller.getStudent);
 
-router.post('/',(req,res) => {
-    res.send('增加学生信息');
-})
 
-router.put('/',(req,res) => {
-    res.send('修改学生信息');
-})
+//获得新增学生信息页面
+router.get('/addStudent',controller.showAddStudent);
 
-router.delete('/',(req,res) => {
-    res.send('删除学生信息');
-})
+router.post('/student',controller.addStudent)
+
+
+//得到修改学生信息的页面
+router.get('/update/:id',controller.showUpStudent)
+
+
+router.post('/updateStudent/:id',controller.updateStudent)
+
+router.get('/delStudent/:id',controller.delStudent)
+
 module.exports  = router;

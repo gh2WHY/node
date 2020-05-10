@@ -1,11 +1,11 @@
-
+<!--展示所有学员信息页面-->
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>学生信息</title>
+    <title>展示学生信息</title>
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 </head>
@@ -58,8 +58,8 @@
                     <td style=""><%= results[i].sex %></td>
                     <td style=""><%= results[i].birth %></td>
                     <td>
-                        <a class="btn btn-primary" href="#">编辑</a>
-                        <a class="btn btn-danger" href="#">删除</a>
+                        <a class="btn btn-primary" href="/update/<%= results[i].id%>">编辑</a>
+                        <a class="btn btn-danger" href="/delStudent/<%= results[i].id%>">删除</a>
                     </td>
                 </tr>
             <%  } %>
