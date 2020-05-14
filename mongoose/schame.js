@@ -18,17 +18,17 @@ let Schema = new mongoose.Schema({
         type:Number,
         // default:18, //设置默认值(静态)
         required:true,
-        max:60,
-        min:18,
+        max:60,  //年龄的最大值为60
+        min:18,  //年龄的嘴小值为18
     },
     sex:String,
     email:{
         type:String,
-        match: /(.+)@(.+)\.["com"| "cn"]/g,
+        match: /(.+)@(.+)\.["com"| "cn"]/g, //正则匹配
     },
     status: {
         type:String,
-        enum:['success','false'],
+        enum:['success','false'],     //输入的字符串只能是seccessfalse
     }
 })
 
