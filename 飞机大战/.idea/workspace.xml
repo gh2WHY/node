@@ -39,7 +39,8 @@
       <option name="presentableId" value="Default" />
       <updated>1590458296520</updated>
       <workItem from="1590458302395" duration="4584000" />
-      <workItem from="1590569691095" duration="3136000" />
+      <workItem from="1590569691095" duration="3748000" />
+      <workItem from="1591165764131" duration="18522000" />
     </task>
     <servers />
   </component>
@@ -55,9 +56,25 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="250" y="117" key="EditFileWatcherDialog/0.0.1280.680@0.0.1280.680" timestamp="1590458503535" />
-    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1590461552012">
+    <state x="297" y="151" key="run.anything.popup" timestamp="1591171740730">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1590461552012" />
+    <state x="297" y="151" key="run.anything.popup/0.0.1280.680@0.0.1280.680" timestamp="1591171740730" />
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1591167123368">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1591167123368" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/js/index.js</url>
+          <line>173</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
