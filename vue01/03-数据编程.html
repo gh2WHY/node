@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    {{msg}}
+</div>
+
+<script>
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            msg: 'Hello World',
+        }
+    })
+
+    setTimeout(function () {
+        vm.$data.msg = "你好 世界"
+    },2000)
+</script>
+
+</body>
+</html>

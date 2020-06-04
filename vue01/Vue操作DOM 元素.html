@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <div ref="why"></div>
+</div>
+
+<script>
+    let  msg = { a: 1 };
+    let  vm = new Vue({
+        el: '#app',
+        data: msg,
+        mounted(){
+            console.log(this.$refs.why)
+            let box = this.$refs.why;
+            box.style.width = '500px';
+            box.style.height = '300px';
+            box.style.backgroundColor= "pink";
+        }
+    })
+</script>
+
+</body>
+</html>

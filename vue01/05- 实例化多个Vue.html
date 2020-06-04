@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+       <p>{{name}}{{price}}元一斤</p>
+    </div>
+
+    <div id="box">
+        <p>{{name}}今年{{age}} 岁了</p>
+    </div>
+    <script>
+        let vm1 = new Vue({
+            el:'#app',
+            data:{
+               name:"香蕉",
+                price:6,
+            }
+        })
+
+        let vm2 = new Vue({
+            el:'#box',
+            data:{
+                name:"希文",
+                age:18,
+            }
+        })
+    </script>
+</body>
+</html>
