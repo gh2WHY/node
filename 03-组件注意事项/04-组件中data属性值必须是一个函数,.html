@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <my-component></my-component>
+    <my-component></my-component>
+    <my-component></my-component>
+</div>
+<template id = "MyCom">
+    <div>
+        <h3>我是组件{{num}}</h3>
+        <button @click="add">点击数字会增加哦</button>
+    </div>
+</template>
+<script >
+    //在这种情况下点击一下,所有的数组都会增加,这不符合我们的目的,我们希望的结果是这些数据之间是不要互相干扰的
+    // let data = {
+    //     num:1,
+    // }
+    // let MyComponent = ({
+    //     template:"#MyCom",
+    // //在组件的data中直接写对象是会报错的,所以我们通过data函数中return出的对象来模拟data的值为对象的情况
+    //     data:function () {
+    //         return data;
+    //     },
+    //     methods:{
+    //         add() {
+    //             this.num++
+    //         }
+    //     }
+    // })
+
+    // //2. 进阶
+    // data是个函数,每次执行都会返回新的数据
+    //当其中某一个组件的数据发生改变的时候并不会影响其他的组件
+    let MyComponent = ({
+        template:"#MyCom",
+        data() {
+            //函数每次执行都会返回一个新的数据,这个数据并不是共享数据
+            return {
+                num : 1
+            }
+        },
+        methods : {
+            add() {
+                this.num++
+            }
+        }
+    })
+
+    let vm = new Vue({
+        el:"#app",
+        components:{
+            MyComponent,
+        }
+    })
+</script>
+</body>
+</html>

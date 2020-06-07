@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <father-com></father-com>
+</div>
+
+<template id="son">
+    <div>
+       <p>我的名字 {{myName}} ,年龄 {{myAge}}</p>
+
+        <p>今日菜单 {{menu}}</p>
+    </div>
+
+</template>
+
+<template id="father">
+    <div>
+        <son-com
+                :my-name = "user.name"
+                :my-age = "user.age"
+                :menu = "menu"
+        ></son-com>
+
+    </div>
+
+</template>
+
+<script>
+
+    let SonCom = ({
+        //允许数据传多种类型的参数
+        props:{"myName":String,
+            "myAge":[Number,String],
+            "menu":Object,
+        },
+        template:"#son",
+    })
+
+    let FatherCom = ({
+        template:"#father",
+        data(){
+            return {
+                user:{
+                    name:"彭昱畅",
+                    age:[1,3,4,5,5]
+                },
+                menu:{
+                    name:"西红柿炒鸡蛋",
+                    price:9,
+                }
+                // menu:122
+            }
+        },
+        components: {
+            SonCom,
+        },
+
+    })
+
+    let vm = new Vue({
+        el:"#app",
+        components: {
+            FatherCom,
+        }
+    })
+</script>
+</body>
+</html>

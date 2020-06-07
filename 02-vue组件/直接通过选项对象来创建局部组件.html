@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+<div id="app-one">
+    <hello></hello>
+</div>
+<div id="app-two">
+    <change></change>
+</div>
+<script >
+  let MyComponent = {
+      template:`
+        <div>
+         <h2>你好 世界</h2>
+        </div>
+      `
+  }
+
+  let MyCom = {
+      template:`
+        <div>
+         <h2>hello world</h2>
+        </div>
+      `
+  }
+  let vm1 = new Vue({
+      el:"#app-one",
+      components:{
+          "hello":MyComponent,
+      }
+  })
+
+  let vm2 = new Vue({
+      el:"#app-two",
+      components:{
+          "change":MyCom,
+      }
+  })
+</script>
+</body>
+</html>

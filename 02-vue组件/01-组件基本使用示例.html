@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+        //1.创建组件构造器
+        let myComponent = Vue.extend({
+            // 配置对象
+            // 因为组件没有挂载点,所以使用模板,只有一个根节点
+            template:`
+                 <div>
+                    <p>你好呀!我是{{fruitName}}</p>
+                    <button @click = "changeName">点击会变呐不信你点试试</button>
+                 </div>
+            `,
+            data:function() {
+                return{
+                    fruitName:"芭乐"
+                }
+            },
+            methods: {
+                changeName() {
+                    this.fruitName = "石榴";
+                }
+            }
+        });
+
+       new myComponent({
+           el:'#app',
+       })
+
+    </script>
+</body>
+</html>

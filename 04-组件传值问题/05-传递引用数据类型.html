@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <father-com></father-com>
+</div>
+<!-- 定义父组件模板   -->
+<template id = "father">
+    <div>
+        <h2>我是父组件</h2>
+        <p>
+            父组件中的数据   {{msg}}
+        </p>
+        <!--    在父组件中使用子组件    -->
+        <son-com
+                :menu="menu"
+        ></son-com>
+        <second-com
+                :menu="menu"
+        ></second-com>
+    </div>
+
+</template>
+
+<!--    定义子组件模板-->
+<template id = "son">
+    <div>
+        <h3>我是子组件1</h3>
+        <p>我是子组件1中的数据   {{msg}}</p>
+        菜单{{menu}}
+        <button @click=" changeName">点击切换名字</button>
+    </div>
+</template>
+
+<!--定义2号子组件-->
+<template id = "secondSon">
+    <div>
+        <h3>我是子组件2</h3>
+        <p>我是子组件2中的数据   {{msg}}</p>
+        <p>
+          菜单{{menu}}
+        </p>
+    </div>
+</template>
+
+<script>
+    let SonCom = ({
+        props:["menu"],
+        template:"#son",
+        data() {
+            return{
+                msg:"你好,世界"
+            }
+        },
+        //直接修改父组件传过来的值会报错(基本数据类型)
+
+        // 父组件向子组件传递数据是传引用(引用数据类型), 直接修改引用地址就会报错,
+        // 如果不变内存地址,只是改变引用数据的属性值,不会报错,
+        // 虽然不会报错,但是不要改:
+        // 原因在于
+        //  1. 不符合vue的单项下行数据流的思想
+        //  2.  如果一旦修改所有使用父组件这个数据的子组件都会发生改变
+        methods:{
+            changeName() {
+                // this.myName = "彭昱畅"
+                // 父组件向子组件传递数据是传引用(引用数据类型), 直接修改引用地址就会报错,
+                // this.menu.name = "西红柿炒鸡蛋"
+
+                //如果直接修改内存地址就会报错
+                this.menu = {
+                    name:"西红柿炒鸡蛋",
+                }
+        }
+        }
+    })
+
+    let secondCom = ({
+        props:['menu'],
+        template:"#secondSon",
+        data() {
+            return {
+                msg : "我就说2号组件中的数据,没错,我就是222222"
+            }
+        }
+    })
+
+    let FatherCom = ({
+        template:"#father",
+        data() {
+            return {
+                msg:"hello world",
+                menu:{
+                    name:"辣椒炒肉",
+                    price:14,
+                }
+            }
+        },
+        components: {
+            SonCom,secondCom
+        }
+    })
+
+    let vm = new Vue({
+        el:"#app",
+        components:{
+            FatherCom,
+        }
+    })
+</script>
+</body>
+</html>

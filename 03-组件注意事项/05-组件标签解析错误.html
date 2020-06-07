@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+<!--    <div id="app">-->
+<!--      <table>-->
+<!--          <my-component></my-component>-->
+<!--          <my-component></my-component>-->
+<!--          <my-component></my-component>-->
+<!--      </table>-->
+<!--    </div>-->
+
+<!--    <template id = "MyCom">-->
+<!--        <tr>-->
+<!--            <td>内容</td>-->
+<!--            <td>123</td>-->
+<!--        </tr>-->
+<!--    </template>-->
+<!--    <script>-->
+<!--        let MyComponent =({-->
+<!--            template:"#MyCom",-->
+
+<!--        })-->
+
+<!--        let vm = new Vue({-->
+<!--            el:"#app",-->
+<!--            components:{-->
+<!--                MyComponent,-->
+<!--            }-->
+<!--        })-->
+
+<!--    </script>-->
+
+
+
+<div id="app">
+    <table>
+        <tr is="my-component"></tr>
+        <tr is="my-component"/>
+        <tr is="my-component"/>
+    </table>
+</div>
+
+<template id = "MyCom">
+    <tr>
+        <td>姓名</td>
+        <td>学号</td>
+        <td>性别</td>
+    </tr>
+</template>
+<script>
+    let MyComponent =({
+        template:"#MyCom",
+
+    })
+
+    let vm = new Vue({
+        el:"#app",
+        components:{
+            MyComponent,
+        }
+    })
+
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+<div id="app-one">
+    <my-component></my-component>
+</div>
+<div id="app-two">
+    <my-component></my-component>
+</div>
+<script >
+    //在JS中使用组件时推荐使用大驼峰命名
+    //在html中跟更推荐使用连字符
+    let MyComponent = Vue.extend({
+        template:`
+                <div>
+                    <h3>你好,世界</h3>
+                </div>
+            `,
+    })
+
+    //MyComponent 组件只能在app-one中使用
+    let vm1 = new Vue({
+        el:"#app-one",
+        components:({
+            'MyComponent':MyComponent,
+        })
+    })
+
+    let vm2 = new Vue({
+        el:"#app-two"
+    })
+</script>
+</body>
+</html>

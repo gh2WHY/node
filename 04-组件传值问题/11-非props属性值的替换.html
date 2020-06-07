@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <father-com></father-com>
+</div>
+
+<!--    定义子组件模板-->
+<template id="son">
+    <!-- 子组件根标签的type属性值text 被父组件传递过了的非prop type属性值 radio替换了 -->
+        <input type="text" />
+</template>
+
+<!--d定义父组件模板-->
+<template id="father">
+    <div>
+        <!-- 父组件向子组件传递非prop属性 type 值为radio -->
+        <son-com
+               :type="type"
+        > </son-com>
+    </div>
+
+</template>
+<script>
+    let SonCom = ({
+        template:"#son",
+    })
+
+    let FatherCom = ({
+        template:"#father",
+        data(){
+            return{
+               type: 'color',
+            }
+        },
+        components:{
+            SonCom,
+        }
+    })
+
+    let vm = new Vue({
+        el:"#app",
+        components: {
+            FatherCom,
+        }
+    })
+</script>
+
+
+</body>
+</html>

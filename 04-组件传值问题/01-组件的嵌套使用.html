@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <father-com></father-com>
+    </div>
+
+<!--    定义父组件模板-->
+    <template id="father">
+        <div>
+            <p>我是父组件</p>
+            <son-com></son-com>
+            <son-com />
+        </div>
+    </template>
+
+<!--    定义子组件模板-->
+    <template id = "son">
+        <p>我是子组件</p>
+    </template>
+    <script>
+
+        //子组件选项对象
+        let SonCom = ({
+            template:"#son",
+        })
+
+        //父组件选项对象
+        let FatherCom = ({
+            template: "#father",
+            //将子组件定义为父组件的子组件
+            components:{
+                SonCom,
+            }
+        })
+
+        let vm = new Vue({
+            el:"#app",
+            components: {
+                FatherCom,
+            }
+        })
+    </script>
+</body>
+</html>

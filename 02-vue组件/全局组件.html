@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app-one">
+        <!--在html中推荐使用连字符-->
+        <my-com></my-com>
+        <!--大写会被自动解析为小写,而且会报错-->
+        <MyCom></MyCom>
+    </div>
+    <div id="app-two">
+        <!-- 如果自定义标签里面没有嵌套内容可以写成单标签的形式 -->
+        <my-com />
+    </div>
+    <script >
+        //在JS中使用组件时推荐使用大驼峰命名
+        //在html中跟更推荐使用连字符
+        Vue.component('MyCom',{
+            template:`
+                <div>
+                <p>
+                    {{this.name}}今年{{this.age}}岁了
+                </p>
+                </div>
+            `,
+            data: function () {
+                return {
+                    name: "why",
+                    age: 19,
+                }
+            }
+        })
+
+        let vm1 = new Vue({
+            el:"#app-one"
+        })
+
+        let vm2 = new Vue({
+            el:"#app-two"
+        })
+    </script>
+</body>
+</html>

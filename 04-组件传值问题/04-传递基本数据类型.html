@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <father-com></father-com>
+</div>
+<!-- 定义父组件模板   -->
+<template id = "father">
+    <div>
+        <h2>我是父组件</h2>
+        <p>
+            父组件中的数据   {{msg}}
+        </p>
+        <!--    在父组件中使用子组件    -->
+        <son-com :my-name="user.name" :my-age="18"></son-com>
+<!--        <second-com :my-name="user.name" :my-age="user.age"></second-com>-->
+    </div>
+
+</template>
+
+<!--    定义子组件模板-->
+<template id = "son">
+    <div>
+        <h3>我是子组件1</h3>
+        <p>我是子组件1中的数据   {{msg}}</p>
+        <p>
+            我接收的父组件中的数据: {{myName}},{{myAge}}
+        </p>
+        <button @click=" changeName">点击切换人名</button>
+    </div>
+</template>
+
+<!--&lt;!&ndash;定义2号子组件&ndash;&gt;-->
+<!--<template id = "secondSon">-->
+<!--    <div>-->
+<!--        <h3>我是子组件2</h3>-->
+<!--        <p>我是子组件2中的数据   {{msg}}</p>-->
+<!--        <p>-->
+<!--            我接收的父组件中的数据: {{myName}},{{myAge}}-->
+<!--        </p>-->
+<!--    </div>-->
+<!--</template>-->
+
+<script>
+    let SonCom = ({
+        props:["myName","myAge"],
+        template:"#son",
+        data() {
+            return{
+                msg:"你好,世界",
+            }
+        },
+        //直接修改父组件传过来的值会报错(基本数据类型)
+        methods:{
+            changeName() {
+                this.myAge = 9
+            }
+        }
+    })
+
+    // let secondCom = ({
+    //     props:["myName","myAge"],
+    //     template:"#secondSon",
+    //     data() {
+    //         return {
+    //             msg : "我就说2号组件中的数据,没错,我就是222222"
+    //         }
+    //     }
+    // })
+    let FatherCom = ({
+        template:"#father",
+        data() {
+            return {
+                msg:"hello world",
+                user:{
+                    name:"why",
+                    age:19,
+                }
+            }
+        },
+        components: {
+            SonCom,
+            // secondCom
+        }
+    })
+
+    let vm = new Vue({
+        el:"#app",
+        components:{
+            FatherCom,
+        }
+    })
+</script>
+</body>
+</html>

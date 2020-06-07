@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!--  在注册了局部组件的实例中使用局部组件    -->
+        <my-component></my-component>
+    </div>
+    <script>
+        // 1.创建剧组件选项对象
+        let MyComponent = ({
+            template:`
+                <div>
+                    <h3>我是组件1</h3>
+                </div>
+            `
+        })
+
+        let vm = new Vue({
+            el:"#app",
+            //2. 将选项对象注册为局部组价
+            components:{
+                "my-component":MyComponent,
+            }
+        })
+
+        /*
+        * 1.首先定义了一个选项对象MyComponent
+        * 2.在Vue的实例化对象想将这个选项对象注册为了局部组件
+        * 3.在html模板中通过标签<my-component></my-component> 使用局部组件
+        * 在上面的代码中我们没有使用驼峰命名,但是依旧可以在模板中使用局部组件
+        * 那么为什么我们还是会建议使用驼峰命名法呢
+        */
+
+        //在注册组件是,components中的属性名my-component就是我们的组件名称,
+        //其值MyComponent就是将谁注册为组件
+        //2. 进阶
+        //如果组件名和选项对象的名称一样会发生什么呢?
+
+
+        //在es6中,如果属性名和属性值相同的话,那么便可以简写
+        // let MyComponent = ({
+        //     template:`
+        //         <div>
+        //             <h3>我是组件1</h3>
+        //         </div>
+        //     `
+        // })
+        //
+        // let vm = new Vue({
+        //     el:"#app",
+        //     //2. 将选项对象注册为局部组价
+        //     components:{
+        //         MyComponent,
+        //     }
+        // })
+
+
+        //若果有多个组件,下面的写法就会让人非常的舒服
+        let MyComponent = ({
+            template:`
+                <div>
+                    <h3>我是组件1</h3>
+                </div>
+            `
+        })
+
+        let vm = new Vue({
+            el:"#app",
+            //2. 将选项对象注册为局部组件
+            components:{
+               first,second,three
+            }
+        })
+    </script>
+</body>
+</html>

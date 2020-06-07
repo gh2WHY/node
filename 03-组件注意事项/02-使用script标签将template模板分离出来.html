@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <my-component></my-component>
+    </div>
+    <script id="myCom" type="text/x-template">
+        <div>
+            <h3>我是组件1</h3>
+        </div>
+    </script>
+    <script>
+        let MyComponent = ({
+            template:"#myCom"
+        })
+
+        let vm = new Vue({
+            el:"#app",
+            components:{
+                MyComponent,
+            }
+        })
+    </script>
+</body>
+</html>

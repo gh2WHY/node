@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <father-com></father-com>
+</div>
+
+<template id="son">
+    <div>
+        我总共被点击了{{num}}次
+        <button @click=" add">点击+1</button>
+    </div>
+
+</template>
+
+<template id="father">
+    <div>
+        <son-com :num="num"></son-com>
+
+    </div>
+
+</template>
+
+<script>
+    //无论点击多少次,只要父组件的数据一发生改变,子组件的数据也会马上跟着改变
+    let SonCom = ({
+        props:["num"],
+        template:"#son",
+        data() {
+            return{
+                num:this.num,
+            }
+        },
+        methods:{
+            add(){
+                this.num++;
+            }
+        }
+
+    })
+
+    let FatherCom = ({
+        template:"#father",
+        data(){
+            return {
+                num:0,
+            }
+        },
+        components: {
+            SonCom,
+        },
+
+    })
+
+    let vm = new Vue({
+        el:"#app",
+        components: {
+            FatherCom,
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <father-com></father-com>
+    </div>
+
+<!--    定义子组件模板-->
+    <template id="son">
+        <div>
+            {{msg}}
+        </div>
+    </template>
+
+
+
+<!--d定义父组件模板-->
+    <template id="father">
+        <div>
+            <son-com
+                    :msg = "msg"
+                    :title="title"
+            > </son-com>
+        </div>
+
+    </template>
+    <script>
+        //非props就是子组件并没有明确props来接受父组件的传值,那么在网页中子组件传值的属性将会成为标签的私有属性
+        let SonCom = ({
+            props:["msg"],
+            template:"#son",
+
+        })
+
+        let FatherCom = ({
+            template:"#father",
+            data(){
+                return{
+                    msg:"你好,世界!",
+                    title:"标题"
+                }
+            },
+            components:{
+                SonCom,
+            }
+        })
+
+        let vm = new Vue({
+            el:"#app",
+            components: {
+                FatherCom,
+            }
+        })
+    </script>
+
+
+</body>
+</html>

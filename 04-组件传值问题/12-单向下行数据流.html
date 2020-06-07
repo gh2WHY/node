@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <father-com></father-com>
+</div>
+<!-- 定义父组件模板   -->
+<template id = "father">
+    <div>
+        <h2>我是父组件</h2>
+        <p>
+            父组件中的数据   {{msg}}
+
+         </p>
+
+        <p>
+            user对象中的数据
+            {{user.name}}
+            {{user.age}}
+        </p>
+        <!--    在父组件中使用子组件    -->
+        <son-com :my-name="user.name" :my-age="user.age"></son-com>
+
+        <button @click="change">点击修改数据</button>
+    </div>
+
+</template>
+
+<!--    定义子组件模板-->
+<template id = "son">
+    <div>
+        <h3>我是子组件1</h3>
+        <p>我是子组件1中的数据   {{msg}}</p>
+        <p>
+            我接收的父组件中的数据: {{myName}},{{myAge}}
+        </p>
+
+    </div>
+</template>
+<script>
+    let SonCom = ({
+        props:["myName","myAge"],
+        template:"#son",
+        data() {
+            return{
+                msg:"你好,世界",
+            }
+        },
+    })
+    let FatherCom = ({
+        template:"#father",
+        data() {
+            return {
+                msg:"hello world",
+                user:{
+                    name:"why",
+                    age:19,
+                }
+            }
+        },
+        components: {
+            SonCom
+        },
+        methods:{
+            change() {
+               this.user.age = 9;
+               this.user.name ="彭昱畅"
+            }
+        }
+    })
+
+    let vm = new Vue({
+            el:"#app",
+            components:{
+                FatherCom,
+            }
+    })
+</script>
+</body>
+</html>

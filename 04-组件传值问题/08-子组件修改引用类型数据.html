@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <child1 :aa="obj"></child1>
+    <child2 :bb="obj"></child2>
+</div>
+
+<script>
+    var child1 = {
+        props:['aa'],
+        template:`<div>{{aa}}</div>`,
+        mounted(){
+            console.log(this.aa)
+        }
+    }
+    var child2 = {
+        props:['bb'],
+        template:`
+            <div>
+                <div>{{cc}}</div>
+                <button @click="handleClick">点击</button>
+            </div>
+        `,
+        data(){
+            return{
+                cc:JSON.parse(JSON.stringify(this.bb)),
+            }
+        },
+        methods: {
+            handleClick(){
+                this.cc.name="haha"
+            }
+        }
+    }
+
+    new Vue({
+        el:'#app',
+        data: {
+            obj:{
+                name: '彭昱畅'
+            }
+        },
+        components: {
+            child1,child2
+        }
+    })
+</script>
+</body>
+</html>
