@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{count}}
+        <button @click="clickBtn ">绑定事件</button>
+        <button @click = "clickBtn2">取消事件绑定</button>
+        <my-com></my-com>
+    </div>
+    <template id = "MyCom">
+        <div>
+            <button @click = "handleClick">点击</button>
+        </div>
+    </template>
+
+    <script>
+        let MyCom = ({
+            template:"#MyCom",
+            methods:{
+               handleClick() {
+                   // console.log(this)
+                   // console.log(this.__proto__.__proto__)
+                   this.$emit('add');
+               }
+
+            }
+        })
+
+        let vm = new Vue({
+            el:"#app",
+            data:{
+                count:0,
+            },
+            methods:{
+                clickBtn() {
+                    // console.log(this);
+                    this.$emit("add");
+                },
+                clickBtn2() {
+                    this.$off("add")
+                }
+            },
+            components: {
+                MyCom,
+            }
+        })
+
+        //绑定一个自定义事件
+        vm.$on("add",function () {
+            // this.count++
+            console.log(111)
+        })
+
+
+        //绑定事件只触发一次
+        // vm.$once("count",function () {
+        //     this.count++
+        // })
+
+
+
+    </script>
+</body>
+</html>

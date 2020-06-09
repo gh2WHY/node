@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <div>父组件的数据:{{user}}</div>
+<!--    <my-com ref="com"></my-com>-->
+    <button @click="handleClick">向子组件传参</button>
+    <my-com ref = "com"></my-com>
+</div>
+
+
+<template id="mycom">
+    <div>
+        子组件中的数据:{{msg}}
+        <br>
+        <button @click="handleClickChild">向父组件传参</button>
+        <br>
+        <min-com></min-com>
+    </div>
+</template>
+
+<template id="mincom">
+    <div>
+        <p>{{msg}}</p>
+        <button @click = "find">执行根组件中的方法</button>
+
+    </div>
+
+</template>
+
+<script>
+    let MinCom = ({
+        template:'#mincom',
+        data(){
+            return{
+                msg:"我是小小组件"
+            }
+        },
+        methods:{
+            find(){
+                // console.log(this.$parent);
+                // console.log(this.$root)
+                this.$parent.changeName("haha");
+                this.$root.changeParent({
+                    sex:"女"
+                })
+            }
+        }
+    })
+
+
+    let MyCom = ({
+        template:"#mycom",
+        data(){
+            return{
+                msg:"alice"
+            }
+        },
+        methods:{
+            fff(){
+                console.log(111)
+            },
+            changeName(name) {
+                // console.log(111)
+                this.msg = name;
+            },
+            handleClickChild(){
+                // console.log(this.$parent.changeParent())
+                // console.log(this.$parent.changeParent());
+                this.$parent.changeParent({
+                    age:19,
+                })
+            }
+        },
+        components: {
+            MinCom,
+        }
+    })
+
+
+    let vm = new Vue({
+        el:"#app",
+        data:{
+            user:{
+                name:"joe"
+            }
+        },
+        components:{
+            MyCom
+        },
+        methods:{
+            handleClick(){
+                // console.log(this.$children[0])
+            //    在这里直接执行子组件中的方法
+            //     this.$children[0].changeName(this.user.name)
+            //     console.log(this.$refs.com);
+                this.$refs.com.changeName(this.user.name)
+            },
+
+
+            changeParent(value) {
+                // console.log(111)
+                console.log(value);
+                this.user = Object.assign({},this.user,value)
+            }
+        }
+    })
+
+/*在父组件中使用子组件的方法(这种方法不常用)
+* 1.通过组件身上的 $children 方法找到它的子组件
+*  找到子组件之后就可以在父组件中执行子组件的方法
+*
+*
+*       ref属性使用在普通DOM元素上,获取的 是原生DOM元素
+*        ref属性使用在组件省上,获取就是组件的实例对象
+*
+* 2. 可以通过 ref 属性来获取子组件
+*     通过 $ref 找到具体的组件 ,就可以在父组件中使用子组件中的方法
+* */
+
+
+    // 2.在子组件中执行父组件中的方法;
+    // 在子组件中可以通过 $parent 方法找到他的父组件
+    //然后就可以在子组件中执行父组件中的方法
+    // 父组件中的方法已经定义好了,只需要在子组件中执行即可
+
+</script>
+</body>
+</html>

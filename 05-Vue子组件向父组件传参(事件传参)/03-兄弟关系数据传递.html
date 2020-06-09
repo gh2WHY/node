@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+
+<!--    &lt;!&ndash;全部都写在实例化对象中&ndash;&gt;-->
+<!--    <div id="app">-->
+<!--        <div>-->
+<!--            <input type="text" v-model = "message">-->
+<!--            <button @click="addBtn">发表</button>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <h2>评论内容</h2>-->
+<!--            <ul>-->
+<!--                <li  v-for="(comment,index) in comments" :key="index" >-->
+<!--                    {{comment}}-->
+<!--                    <button @click = "delBtn(index)">X</button>-->
+<!--                </li>-->
+
+<!--            </ul>-->
+<!--        </div>-->
+<!--    </div>-->
+
+
+<!--    <script>-->
+<!--        let vm  = new Vue({-->
+<!--            el :"#app",-->
+<!--            data:{-->
+<!--                message: '',-->
+<!--                comments:[],-->
+<!--            },-->
+<!--            methods:{-->
+<!--                addBtn() {-->
+<!--                    this.comments.push(this.message)-->
+<!--                    this.message = ""-->
+<!--                },-->
+<!--                delBtn(index) {-->
+<!--                    // console.log(index);-->
+<!--                    this.comments.splice(index,1)-->
+<!--                }-->
+<!--            }-->
+<!--        })-->
+<!--    </script>-->
+
+    <!--拆分成组件的形式-->
+    <div id="app">
+        <my-input @add = "addComment"></my-input>
+        <show-comment :comments = "comments" @delete = "deleteComment"></show-comment>
+    </div>
+
+    <!--发表评论部分组件-->
+    <template id="MyInput">
+        <div>
+            <input type="text" v-model = "message">
+            <button @click="addBtn">发表</button>
+        </div>
+    </template>
+
+    <!--展示评论部分组件-->
+    <template id="ShowComment">
+        <div>
+            <h2>评论内容</h2>
+            <ul>
+                <li  v-for="(comment,index) in comments" :key="index" >
+                    {{comment}}
+                    <button @click = "delBtn(index)">X</button>
+                </li>
+            </ul>
+        </div>
+
+    </template>
+
+    <script>
+        let MyInput = ({
+            template:"#MyInput",
+            data(){
+                return{
+                    message:"",
+                }
+            },
+            methods:{
+                addBtn() {
+                    let message = this.message.trim();
+                    if(message === "") {
+                        console.log("请输入合法的评论内容");
+                        return;
+                    }
+                    this.$emit("add",message);
+                    this.message = "";
+                }
+            }
+
+        })
+
+        let ShowComment = ({
+            props:["comments"],
+            template:"#ShowComment",
+            methods:{
+                delBtn(index) {
+                    console.log(index)
+                    this.$emit("delete",index);
+                }
+            }
+        })
+
+        let vm = new Vue({
+            el:"#app",
+            data:{
+                comments:[],
+            },
+            methods:{
+                addComment(msg) {
+                    this.comments.push(msg);
+                },
+                deleteComment(index){
+                    console.log(111)
+                    this.comments.splice(index,1);
+                }
+            },
+            components:{
+                MyInput,ShowComment
+            }
+        })
+    </script>
+</body>
+</html>

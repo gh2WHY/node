@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+   <div id="app">
+        <one-com ></one-com>
+        <two-com ></two-com>
+   </div>
+
+    <script>
+        Vue.prototype.$bus = new Vue();
+        let oneCom= ({
+            template:`
+                <div>
+                    <p>你点击了{{count}}次</p>
+                </div>
+            `,
+            data(){
+                return{
+                    count:0,
+                }
+            },
+            mounted(){
+                console.log(this)
+                let This = this
+                this.$bus.$on("increment", function(num){
+                    console.log(This)
+                    This.count+= num
+
+                })
+            }
+        })
+
+        let TwoCom = ({
+            template: `
+                <button @click = "handleClick">点击+1</button>
+            `,
+            methods: {
+                handleClick() {
+                    this.$bus.$emit("increment",1)
+                }
+            }
+        })
+
+        let vm = new Vue({
+            el:"#app",
+            data:{
+
+            },
+            methods:{
+
+            },
+            components:{
+                oneCom,TwoCom
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!--   3.在子组件中绑定自定义事件, 将父组件的方法绑定为该自定义事件的处理函数   -->
+        <my-com :menu = "menu"  @add = "addMenu"></my-com>
+    </div>
+    <template id = "MyCom">
+        <div>
+            <ol >
+                <li v-for = "(cai,index) in menu" :key="index">
+                    {{cai.name }}: {{ cai.price}}
+                </li>
+            </ol>
+            <!-- 1.子组件通过原生的click触发子组件中的自定义函数-->
+            <button @click = "addSon">点击添加菜品</button>
+        </div>
+    </template>
+
+    <script>
+        let MyCom = ({
+            props:["menu"],
+            template:"#MyCom",
+            methods:{
+                addSon(){
+                    // 2.子组件函数中触发自定义事件
+                   this.$emit("add",{
+                        name:"酸辣土豆丝",
+                        price:9,
+                   })
+                }
+            }
+        })
+
+        let vm = new Vue({
+            el:"#app",
+            data:{
+                menu:[
+                    {
+                        name:"西红柿炒鸡蛋",
+                        price:10,
+                    },
+                    {
+                        name:"辣椒炒肉",
+                        price:15,
+                    },
+                    {
+                        name:"茄辣西",
+                        price:12,
+                    }
+                ]
+            },
+            methods:{
+                //4. 在父组件函数中修改父组件的数据
+                addMenu(value) {
+                    console.log(value);
+                    this.menu.push(value)
+                }
+            },
+            components: {
+                MyCom,
+            }
+        })
+
+        //绑定一个自定义事件
+        vm.$on("add",function () {
+            // this.count++
+            console.log(111)
+        })
+
+
+        //绑定事件只触发一次
+        // vm.$once("count",function () {
+        //     this.count++
+        // })
+
+
+
+    </script>
+</body>
+</html>

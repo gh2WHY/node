@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+   <div id="app">
+        <one-com :count="count"></one-com>
+        <two-com @add = "addNumber"></two-com>
+   </div>
+
+    <script>
+        let oneCom= ({
+            props:["count"],
+            template:`
+                <div>
+                    <p>你点击了{{count}}次</p>
+                </div>
+            `
+        })
+
+        let TwoCom = ({
+            template: `
+                <button @click = "handleClick">点击+1</button>
+            `,
+            methods:{
+                handleClick() {
+                    console.log(111);
+                    this.$emit("add")
+                }
+            }
+        })
+
+        let vm = new Vue({
+            el:"#app",
+            data:{
+                count:0,
+            },
+            methods:{
+                addNumber() {
+                    this.count++;
+                    console.log(222)
+                }
+
+            },
+            components:{
+                oneCom,TwoCom
+            }
+        })
+    </script>
+</body>
+</html>
