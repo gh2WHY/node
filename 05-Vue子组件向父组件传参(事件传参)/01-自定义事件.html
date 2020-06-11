@@ -10,27 +10,9 @@
         {{count}}
         <button @click="clickBtn ">绑定事件</button>
         <button @click = "clickBtn2">取消事件绑定</button>
-        <my-com></my-com>
     </div>
-    <template id = "MyCom">
-        <div>
-            <button @click = "handleClick">点击</button>
-        </div>
-    </template>
 
     <script>
-        let MyCom = ({
-            template:"#MyCom",
-            methods:{
-               handleClick() {
-                   // console.log(this)
-                   // console.log(this.__proto__.__proto__)
-                   this.$emit('add');
-               }
-
-            }
-        })
-
         let vm = new Vue({
             el:"#app",
             data:{
@@ -38,29 +20,30 @@
             },
             methods:{
                 clickBtn() {
-                    // console.log(this);
+                    //触发事件
                     this.$emit("add");
+
+                    // this.$emit("count")
                 },
                 clickBtn2() {
                     this.$off("add")
                 }
             },
             components: {
-                MyCom,
+                // MyCom,
             }
         })
 
         //绑定一个自定义事件
         vm.$on("add",function () {
-            // this.count++
-            console.log(111)
+            this.count++
         })
 
 
         //绑定事件只触发一次
-        // vm.$once("count",function () {
-        //     this.count++
-        // })
+        vm.$once("count",function () {
+            this.count++
+        })
 
 
 

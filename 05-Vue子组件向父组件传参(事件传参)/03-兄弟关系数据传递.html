@@ -24,8 +24,6 @@
 <!--            </ul>-->
 <!--        </div>-->
 <!--    </div>-->
-
-
 <!--    <script>-->
 <!--        let vm  = new Vue({-->
 <!--            el :"#app",-->
@@ -34,10 +32,12 @@
 <!--                comments:[],-->
 <!--            },-->
 <!--            methods:{-->
+<!--                //点击发表,评论区会增加一条内容-->
 <!--                addBtn() {-->
 <!--                    this.comments.push(this.message)-->
 <!--                    this.message = ""-->
 <!--                },-->
+<!--                //点击删除,会删掉对应的评论区内容-->
 <!--                delBtn(index) {-->
 <!--                    // console.log(index);-->
 <!--                    this.comments.splice(index,1)-->
@@ -125,6 +125,6 @@
                 MyInput,ShowComment
             }
         })
-    </script>
+  </script>
 </body>
 </html>

@@ -13,8 +13,8 @@
     <template id = "MyCom">
         <div>
             <ol >
-                <li v-for = "(cai,index) in menu" :key="index">
-                    {{cai.name }}: {{ cai.price}}
+                <li v-for = "(food,index) in menu" :key="index">
+                    {{food.name }}: {{ food.price}}
                 </li>
             </ol>
             <!-- 1.子组件通过原生的click触发子组件中的自定义函数-->
@@ -49,10 +49,6 @@
                         name:"辣椒炒肉",
                         price:15,
                     },
-                    {
-                        name:"茄辣西",
-                        price:12,
-                    }
                 ]
             },
             methods:{
@@ -80,7 +76,12 @@
         // })
 
 
-
+        // 子组件通过自定义事件向父组件传递参数
+        // 思路
+        // 1. 在父组件上绑定一个自定义的事件
+        // 2. 子组件在自己的事件处理函数中通过$emit触发自定义事件
+        // 3. 子组件在触发自定义事件时可以给自定义事件传递参数
+        // 4. 这样就达到了子组件向父组件传参的目的
     </script>
 </body>
 </html>

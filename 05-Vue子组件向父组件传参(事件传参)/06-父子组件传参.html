@@ -10,7 +10,7 @@
 </head>
 <body>
 <div id="app">
-    <div>父组件的数据:{{user}}</div>
+    <h2>父组件的数据:{{user}}</h2>
 <!--    <my-com ref="com"></my-com>-->
     <button @click="handleClick">向子组件传参</button>
     <my-com ref = "com"></my-com>
@@ -19,21 +19,17 @@
 
 <template id="mycom">
     <div>
-        子组件中的数据:{{msg}}
-        <br>
+       <h2>子组件中的数据:{{msg}}</h2>
         <button @click="handleClickChild">向父组件传参</button>
-        <br>
         <min-com></min-com>
     </div>
 </template>
 
 <template id="mincom">
     <div>
-        <p>{{msg}}</p>
-        <button @click = "find">执行根组件中的方法</button>
-
+        <h2>{{msg}}</h2>
+        <button @click = "find">我是小小组件</button>
     </div>
-
 </template>
 
 <script>
@@ -46,12 +42,12 @@
         },
         methods:{
             find(){
-                // console.log(this.$parent);
-                // console.log(this.$root)
-                this.$parent.changeName("haha");
-                this.$root.changeParent({
-                    sex:"女"
-                })
+                console.log(this.$parent);
+                console.log(this.$root)
+                // this.$parent.changeName("haha");
+                // this.$root.changeParent({
+                //     sex:"女"
+                // })
             }
         }
     })
