@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <div>
+        <h2>父组件中的数据{{user}}</h2>
+        <button @click="FatherBtn">父组件按钮</button>
+        <son-com ref = "son"></son-com>
+    </div>
+</div>
+<!--定义小小组件模板-->
+<template id="mincom">
+    <div>
+        <h2>{{msg}}</h2>
+        <button @click = "changeRoot">执行根实例中的方法</button>
+        <button @click = "changeFather">执行父组件中的方法</button>
+    </div>
+</template>
+<!--定义子组件模板-->
+<template id="soncom">
+    <div>
+        <h2>子组件中的数据{{msg}}</h2>
+        <button @click = "handleClick">子组件按钮</button>
+        <min-com></min-com>
+    </div>
+</template>
+
+<script>
+   let MinCom = ({
+       template: "#mincom",
+       data(){
+           return{
+               msg:"小小组件的数据"
+           }
+       },
+       methods:{
+           //执行根实例中分方法
+           changeRoot(){
+                this.$root.ChangeUser({
+                    sex:"女",
+                })
+           },
+           //执行父组件中的方法
+           changeFather(){
+               this.$parent.changeMsg("我们都是最棒的");
+           },
+       },
+   })
+    //定义子组件
+    let SonCom = ({
+        template:`#soncom`,
+        data(){
+            return{
+                msg:"hello world"
+            }
+        },
+        components:{
+            MinCom,
+        },
+        methods:{
+            changeMsg(value){
+                console.log(value);
+                this.msg = value
+            },
+            //执行父组件中的方法
+             handleClick(){
+                 this.$parent.ChangeUser({age:19});
+            }
+        }
+    })
+    let vm = new Vue({
+        el:"#app",
+        data:{
+            user:{
+                name:"joe"
+            }
+        },
+        components:{
+            SonCom,
+        },
+        methods:{
+            FatherBtn(){
+                // console.log(this.$refs.son);
+                // this.$refs.son.changeMsg("你好,世界!")
+                // console.log(this.$children[0]);
+                // this.$children[0].changeMsg("你好,世界!");
+            },
+            ChangeUser(value) {
+                console.log(value)
+                this.user = Object.assign({},this.user,value);
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <!-- 3.在子组件中绑定自定义事件, 将父组件的方法绑定为自定义事件的处理函数-->
+    <my-com
+            :count = "count"
+            @count="addCount"
+    ></my-com>
+</div>
+
+<template id="mycom">
+    <div>
+        <h3>我被点击了{{count}}次</h3>
+        <!-- 1. 子组件通过原生click事件触发子组件自己的函数 -->
+        <button @click="add">点击+1</button>
+    </div>
+</template>
+
+<script>
+    let MyCom = ({
+        props:["count"],
+        template: "#mycom",
+        methods: {
+            add() {
+                // 2.子子组件函数中触发自定义事件
+                this.$emit("count",2);
+            }
+        }
+    })
+
+    let vm = new Vue({
+        el: "#app",
+        data: {
+            count: 0
+        },
+        components: {
+            MyCom,
+        },
+        methods: {
+            // 4. 在父组件函数中修改父组件中的数据
+            addCount(value) {
+                console.log(value);
+                this.count +=2;
+            }
+        }
+    })
+</script>
+</body>
+</html>

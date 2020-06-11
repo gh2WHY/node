@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <div> {{msg}}</div>
+
+    <my-com
+        :value = "msg"
+        @input = "value => this.msg = value"
+    ></my-com>
+</div>
+
+<template id="mycom">
+    <div>
+        <input
+                :value = "value"
+                @input = "changeInput"
+                type="text"
+        />
+    </div>
+</template>
+<script>
+    let MyCom = ({
+        props:["value"],
+        template:"#mycom",
+        methods:{
+            changeInput(event){
+                let value = event.target.value;
+                console.log(value)
+                this.$emit("input",value)
+            }
+        }
+    })
+    let vm = new Vue({
+        el :"#app",
+        data:{
+            msg : "",
+        },
+        components:{
+            MyCom,
+        }
+    })
+</script>
+</body>
+</html>

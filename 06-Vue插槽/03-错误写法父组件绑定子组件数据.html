@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <my-com></my-com>
+    </div>
+    <template id="mycom">
+        <button  v-show = "isShow">按钮</button>
+    </template>
+    <script>
+        let MyCom = ({
+            data(){
+                return{
+                   isShow:false,
+                }
+            },
+            template:"#mycom",
+        })
+
+        let vm = new Vue({
+            el:"#app",
+            components:{
+                MyCom,
+            }
+        })
+    </script>
+</body>
+</html>
