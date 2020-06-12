@@ -7,13 +7,17 @@
 </head>
 <body>
     <div id="app">
-        <my-com>按钮</my-com>
-        <my-com>{{value}}</my-com>
+        <my-com>
+            <h3>你好啊!我是依古比古</h3>
+        </my-com>
+        <my-com>
+            <h2>你好,我是玛卡巴卡</h2>
+        </my-com>
     </div>
     <template id="mycom">
-        <button >
-            <slot></slot>
-        </button>
+       <div>
+           <slot></slot>
+       </div>
     </template>
     <script>
         let MyCom = ({
@@ -22,9 +26,6 @@
 
         let vm = new Vue({
             el:"#app",
-            data:{
-                value:"注册"
-            },
             components:{
                 MyCom,
             }

@@ -7,13 +7,27 @@
 </head>
 <body>
     <div id="app">
-        <my-com>按钮</my-com>
-        <my-com>{{value}}</my-com>
+        <my-com>
+            <h2>标题~~标题</h2>
+            <p>希望第二天的我</p>
+            <p>仍然对不同充满宽容</p>
+            <p>继续对未知饱含敬畏</p>
+            <span>2020年6月12号</span>
+        </my-com>
+
     </div>
     <template id="mycom">
-        <button >
-            <slot></slot>
-        </button>
+        <div class = "article">
+            <div class="title">
+                <slot></slot>
+            </div>
+            <div class="content">
+                <slot></slot>
+            </div>
+            <div class="time">
+                <slot></slot>
+            </div>
+        </div>
     </template>
     <script>
         let MyCom = ({

@@ -7,12 +7,14 @@
 </head>
 <body>
     <div id="app">
-        <my-com>按钮</my-com>
-        <my-com>{{value}}</my-com>
+        <my-com></my-com>
+        <my-com>
+            {{value}}
+        </my-com>
     </div>
     <template id="mycom">
-        <button >
-            <slot></slot>
+        <button>
+            <slot>我是默认内容</slot>
         </button>
     </template>
     <script>

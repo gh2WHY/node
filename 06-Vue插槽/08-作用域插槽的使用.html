@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <my-com>
+        <!-- slot-scope 不能直接在组件上使用,只能在DOM元素上使用-->
+<!--            <tempalte slot-scope="props">-->
+<!--                {{props.msg}}-->
+<!--                {{props.value}}-->
+<!--            </tempalte>-->
+            <div slot-scope = "{msg,value}">
+               <h2>{{msg}}</h2>
+                <h3>{{value}}</h3>
+            </div>
+<!--            <div slot-scope = "{value}">-->
+<!--                {{value}}-->
+<!--            </div>-->
+<!--            <template slot-scope="props">-->
+<!--                {{props}}-->
+<!--            </template>-->
+        </my-com>
+    </div>
+
+    <template id="mycom">
+        <div>
+            <slot :msg = "msg" :value="value"></slot>
+        </div>
+    </template>
+    <script>
+        let MyCom = ({
+            template:"#mycom",
+            data(){
+                return{
+                    msg:"今天天气真不错",
+                    value:"你的衣服真好看"
+                }
+            }
+        })
+
+        let vm = new Vue({
+            el:"#app",
+            components:{
+                MyCom,
+            }
+        })
+    </script>
+</body>
+</html>
