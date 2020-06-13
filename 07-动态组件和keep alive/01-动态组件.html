@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1234</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+         *{
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style: none;
+        }
+        #app{
+            width: 100vw;
+            height:100vh;
+        }
+        .option ul{
+            display: flex;
+            position: fixed;
+            left: 0;
+            right:0;
+            bottom:0;
+            height:50px;
+            border-top:2px solid #FFCA28;
+        }
+
+      
+        .option ul li{
+            flex: 1;
+            text-align:center;
+            line-height: 50px;
+            font-size:22px;
+            color:#fff;
+            background: #FFCA28;
+        }
+
+        .content{
+            position: fixed;
+            top:0;
+            left:0;
+            right:0;
+            bottom: 52px;
+            background:#C5E1A5;
+            padding:30px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="content">
+            <!-- <home v-if = "current == 'Home'"></home>
+            <my-com  v-if = "current == 'MyCom'"></my-com> 
+            <about v-if = "current == 'About'"></about>  -->
+            
+            <!-- <component :is="current"></component> -->
+
+            <keep-alive exclude="MyCom,About">
+                <component :is="current"></component>
+            </keep-alive>
+
+        </div>
+        <div class="option">
+            <ul>
+                <li @click="handleClick('Home')">Home</li>
+                <li @click="handleClick('MyCom')">Content</li>
+                <li @click="handleClick('About')">About</li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        let Home= ({
+            template:`
+            <div>
+                    <h2>Home组件</h2>
+                    <input type="text">
+                </div>
+              
+                
+            `,
+            // beforeCreate () {
+            //    console.log("Home beforeCreate") 
+            // },
+            // created () {
+            //    console.log("Home Create") 
+            // },
+            // beforeMount () {
+            //     console.log("Home beforeMount");
+            // },
+            // mounted () {
+            //     console.log("Home mounted");
+            // },
+            // beforeDestroy () {
+            //     console.log("Home beforeDestroy");
+            // },
+            // destroyed () {
+            //     console.log("Home destroyed");
+            // },
+            activated(){
+                // 当前组件处于活跃状态 ,
+                console.log('activate')
+            },
+            deactivated(){
+                // 当前组件不处于活跃状态, 冻结
+                console.log("deactivate")
+            }
+        })
+
+        let MyCom = {
+            template:`
+                <h2>Article组件</h2>
+            `,
+            // beforeCreate () {
+            //    console.log("MyCom beforeCreate") 
+            // },
+            // created () {
+            //    console.log("MyCom Create") 
+            // },
+            // beforeMount () {
+            //     console.log("MyCom beforeMount");
+            // },
+            // mounted () {
+            //     console.log("MyCom mounted");
+            // },
+            // beforeDestroy () {
+            //     console.log("MyCom beforeDestroy");
+            // },
+            // destroyed () {
+            //     console.log("MyCom destroyed");
+            // }
+        }
+
+        let About= ({
+            template:`
+                <h2>我是About组件</h2>
+            `,
+        })
+        let vm = new Vue({
+            el:"#app",
+            data:{
+                current:"Home"
+            },
+            methods:{
+                handleClick(value){
+                    this.current = value
+                }
+            },
+            components: {
+                Home,About,MyCom
+            }
+        })
+    </script>
+</body>
+</html>
