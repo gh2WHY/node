@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box {
+            width: 200px;
+            height: 200px;
+            background-color: #abcabc;
+            font-size:20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">12323</div>
+    <input type="checkbox" id = "checkbox1">
+    <script>
+    
+    //for in 循环遍历对象
+    // let obj = {
+    //     name:"高高",
+    //     age:9,
+    //     sex:"女",
+    //     birth:"7-16"
+    // }
+
+    // for(var key in obj) {
+    //     console.log(key);
+        
+    // }
+    // let oBox = document.querySelector(".box");
+    // oBox.style.backgroundColor = "red" 
+
+    var oBox = document.getElementById('box')
+  getComputedStyle(oBox)["font-size"]  // 16px
+  getComputedStyle(oBox).fontSize;		// 16px
+
+   getComputedStyle(oBox)["background-color"]
+   getComputedStyle(oBox).width
+    </script>
+</body>
+</html>
