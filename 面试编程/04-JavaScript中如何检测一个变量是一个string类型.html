@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var str = "abcdef";
+        // console.log(str.__proto__.constructor);
+        
+        function isString(str) {
+            if(typeof str == 'String' || str.constructor == String) {
+                return true;
+            }else{
+                return false;
+            }
+        }
+       console.log( isString(str));
+       
+    </script>
+</body>
+</html>

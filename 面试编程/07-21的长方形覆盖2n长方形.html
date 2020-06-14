@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        
+        //         s: c o d e w a r s = codewars
+        // part1: c d w = cdw
+        // part2: o e a r s = oears
+        let str = "codewars"
+        function isMerge(s, part1, part2) {
+            if (s.length !== part1.length + part2.length) {
+                return false
+            } else {
+                let index1 = 0;
+                let index2 = 0;
+                for (let i = 0; i < s.length; i++) {
+                    if (s[i] == part1[index1]) {
+                        index1++;
+                    } else if (s[i] == part2[index2]) {
+                        index2++;
+                    } else {
+                        break;
+                    }
+                }
+                return (index1 == part1.length) && (index2 == part2.length)  
+            }
+        }
+        console.log(isMerge('codewars','cdw','oears'));
+        
+    </script>
+</body>
+
+</html>

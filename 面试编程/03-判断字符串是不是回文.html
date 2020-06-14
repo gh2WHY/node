@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let str = "abccba";
+        function huiwen(str) {
+            //先将字符串转化为数组
+            let arr = str.split('')
+            //利用数组反转
+            let revArr = arr.reverse();
+            //翻转后的数组转化为字符串
+            let result = revArr.join('');
+            if(result === str) {
+                console.log(str + '是回文字符串');
+                
+            }else{
+                console.log(str + '不是回文字符串');
+            }
+        }
+       huiwen(str);
+       
+        
+
+    </script>
+</body>
+</html>
