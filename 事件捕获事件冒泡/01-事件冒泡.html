@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #orange {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 100px auto;
+            background-color: orange;
+        }
+
+        #purple {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            width: 180px;
+            height: 180px;
+            background-color: purple;
+        }
+
+        #blue {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            width: 80px;
+            height: 80px;
+            background-color: #58a;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="orange">
+        <div id="purple">
+            <div id="blue"></div>
+        </div>
+    </div>
+    <script>
+          document.getElementById('blue').addEventListener('click', (ev) => {
+            ev.stopPropagation();
+            ev.preventDefault();
+            console.log("我是蓝色盒子");
+        }, false);
+        document.getElementById('orange').addEventListener('click', function () {
+            console.log("我是橘色盒子");
+        }, false);
+
+        document.getElementById('purple').addEventListener('click', function () {
+            console.log("我是紫色盒子");
+        }, false);
+
+      
+
+        for (var i = 0; i < 5; i++) {
+            requestAnimationFrame(() => console.log(i));
+        }
+    </script>
+</body>
+
+</html>

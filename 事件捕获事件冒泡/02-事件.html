@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        <li>click me</li>
+        <li>click me</li>
+        <li>click me</li>
+        <li>click me</li>
+    </ul>
+    <div id='info'style='display:block'><p> 请填写 </p></div>
+    <script>
+        // var elements = document.getElementsByTagName('li');
+        // var length = elements.length;
+        // for (var i = 0; i < length; i++) {
+        //     elements[i].onclick = function () {
+        //         alert(i);
+        //     }
+        // }
+
+        // var obj = { a: 1, b: function () { alert(this.a) } };
+        // var fun = obj.b;
+        // fun();
+//             console.log(document.getElementById("info").innerHTML)
+//         for(var i=0;i<5;++i){
+//     setTimeout(function(){
+//         console.log(i+ ' ');
+//     },100);
+// }
+var foo ={n:1};
+(function foo(){
+    console.log(foo.n);
+    foo.n =3;
+    var foo = {n :2};
+    console.log(foo.n);
+    
+    
+})(foo);
+    </script>
+</body>
+
+</html>

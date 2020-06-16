@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // console.log(...[1, 2, 3]);
+        // let x = 2;
+        // const arr = [
+        //     ...(x > 0 ? ['a'] : []),
+        //     'b',
+        // ];
+        // console.log(arr);
+        // let arr = [12, 53, 66, 98, 23, 15, 78];
+        //es5找出数组中的最大值
+        // console.log(
+        //     Math.max.apply(null,arr)
+        // );
+        //es6中的写法
+        // console.log(Math.max(...[12,53,66,98,23,15,78]));
+
+        // const [first, ...rest] = [1, 2, 3, 4, 5];
+        // console.log(first);
+        // console.log(rest);
+
+
+        // const [first, ...middle, last] = [1, 2, 3, 4, 5];
+        // 报错
+
+        //使用map一定要return
+        // arr.map(function (item, index) {
+        //     console.log(this); //window
+        //     console.log(item, index);
+        //     return item;
+
+
+        // })
+
+        let arr = [
+            { title: "aa", read: 100 },
+            { title: "bb", read: 20 },
+            { title: "cc", read: 50 }
+        ]
+        let newArr = arr.map((item,index)=> {
+            let json = {}
+            json.shop = `${item.title}====`
+            json.price = `${item.read}元 `
+            return json;
+        })
+
+        console.log(arr);
+        console.log(newArr);
+        
+        
+    </script>
+</body>
+
+</html>
