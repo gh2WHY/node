@@ -23,8 +23,8 @@
         // console.log(newArr);
 
         //利用set实现数组去重
-        // let newArr = [...new Set(arr)];
-        // console.log(newArr);
+        let newArr = [...new Set(arr)];
+        console.log(newArr);
         
         // function fun(arr) {
         //     let length = arr.length;
@@ -39,17 +39,17 @@
         //     return arr
         // }
 
-        function fun(arr) {
-            let newArr = [];
-            arr.forEach((item,index) => {
-                //遍历数组的时候查看新数组中是否有这个值,如果没有,则将该值写入新数组,如果有,就不写入
-                let result = newArr.indexOf(item);
-                if(result === -1) {
-                    newArr.push(item);
-                }
-            })
-            return newArr
-        }
+        // function fun(arr) {
+        //     let newArr = [];
+        //     arr.forEach((item,index) => {
+        //         //遍历数组的时候查看新数组中是否有这个值,如果没有,则将该值写入新数组,如果有,就不写入
+        //         let result = newArr.indexOf(item);
+        //         if(result === -1) {
+        //             newArr.push(item);
+        //         }
+        //     })
+        //     return newArr
+        // }
         console.log(fun(arr));
         
     </script>
