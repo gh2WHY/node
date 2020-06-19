@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        /* #box {
+            width: 100px;
+            height: 100px;
+            background-color: tomato;
+            transition:width 3s   ease-in-out;
+        }
+        #box:hover{
+            width: 500px;
+        } */
+
+
+        #box {
+            width: 100px;
+            height: 100px;
+            background-color: tomato;
+         
+            animation: demo 3s linear  alternate forwards;
+       }
+        @keyframes demo {
+            0%{
+               
+            }
+            50%{
+                transform: translate(200px,200px) scale(0.5);
+            }
+            100%{
+                transform: translate(0px,0px) scale(1.2);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+</body>
+</html>
