@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // let a = [];
+        // a[0] = 0;
+        // a[1] = 1;
+        // a[2] = 2;
+        // a[3] = 3;
+        // console.log(a.length);
+
+
+        //关于匿名函数的this问题
+        // var name = "小名";
+        // var obj = {
+        //     name:"my Object",
+        //     getNameFun:function(){
+        //         return function(){
+        //             return this.name
+        //         }
+        //     }
+        // }
+        // alert(obj.getNameFun()())
+
+
+        // 完成函数 createModule，调用之后满足如下要求：
+        // 1、返回一个对象
+        // 2、对象的 greeting 属性值等于 str1， name 属性值等于 str2
+        // 3、对象存在一个 sayIt 方法，该方法返回的字符串为 greeting属性值 + ', ' + name属性值完成函数 createModule，调用之后满足如下要求：
+        // let str1 = "ab",
+        //     str2 = "cd"
+        //工厂模式常见对象
+        // function createModule(str1, str2) {
+        //     function createObj() {
+        //         let obj = new Object;
+        //         obj.greeting = str1;
+        //         obj.name = str2;
+        //         obj.sayIt = function () {
+        //             return (`${obj.greeting}+${obj.name}`)
+        //         }
+        //         return obj;
+        //     }
+        //     return createObj();
+        // }
+
+        //构造函数创建
+        // function createModule(str1, str2) {
+        //     function obj() {
+        //         this.greeting = str1;
+        //         this.name = str2;
+        //         this.sayIt = function () {
+        //             return (`${this.greeting},${this.name}`)
+        //         }
+        //     }
+        //     return new obj();
+        // }
+
+
+        //组合方式创建
+        // function createModule(str1, str2) {
+        //     function obj() {
+        //         this.greeting = str1;
+        //         this.name = str2;
+        //    }
+        //    obj.prototype.sayIt = function() {
+        //         return (`${this.greeting},${this.name}`)
+        //    }
+        //     return new obj();
+        // }
+        // console.log(createModule(str1, str2).sayIt());
+
+
+
+
+        // 实现函数 makeClosures，调用之后满足如下条件：
+        // 1、返回一个函数数组 result，长度与 arr 相同
+        // 2、运行 result 中第 i 个函数，即 result[i]() ，结果与 fn(arr[i]) 相同
+
+        // 将给定数字转换成二进制字符串。如果字符串长度不足 8 位，则在前面补 0 到满8位。
+        // function convertToBinary(num) {
+        //     let str = parseInt(num).toString(2);    
+        //     let arr = str.split('');
+        //     while(arr.length < 8) {
+        //         arr.unshift(0);
+        //     }
+        //     return arr.join('')
+        //     // console.log(arr.join(''));
+
+        // }
+
+        // var num = 10;
+        // alert(num.toString());          //"10"
+        // alert(num.toString(2));         //"1010"
+        // alert(num.toString(8));         //"12"
+        // alert(num.toString(10));        //"10"
+        // alert(num.toString(16));        //"a"
+
+
+        // 给定二进制字符串，将其换算成对应的十进制数字
+        // let str = '11000000'
+        // function base10(str) {
+        //     let arr = str.split('');
+        //     let j = 0 ;
+        //     let result = 0 ;
+        //     for(let i = arr.length - 1 ; i >= 0; i--) {
+        //        result += arr[i]* Math.pow(2,j);
+        //        j++;
+        //     }
+        //     return result;   
+        // }
+        // console.log(base10(str));
+
+
+        // 获取数字 num 二进制形式第 bit 位的值。注意：
+        // 1、bit 从 1 开始
+        // 2、返回 0 或 1
+        // 3、举例：2 的二进制为 10，第 1 位为 0，第 2 位为 1
+        // function convertToBinary(num,bit) {
+        //     let str = parseInt(num).toString(2);
+        //     let str1 = str.split('').reverse().join('');
+        //     return str1.substr(bit-1,1);
+        // }
+        // convertToBinary(128,8)
+
+
+
+
+        // 实现 fizzBuzz 函数，参数 num 与返回值的关系如下：
+        // 1、如果 num 能同时被 3 和 5 整除，返回字符串 fizzbuzz
+        // 2、如果 num 能被 3 整除，返回字符串 fizz
+        // 3、如果 num 能被 5 整除，返回字符串 buzz
+        // 4、如果参数为空或者不是 Number 类型，返回 false
+        // 5、其余情况，返回参数 num
+        function fizzBuzz(num) {
+            if(num % 3 === 0 && num % 5 === 0) {
+                return 'fizzbuzz'
+            }else if(num % 3 === 0) {
+                return 'fizz'
+            }else if(num % 5 === 0) {
+                return 'buzz'
+            }else if( typeof num != "number" || !num ) {
+                return false
+            }else {
+                return num
+            }
+        }
+        console.log( fizzBuzz([1,2,3]));
+        
+    </script>
+</body>
+
+</html>

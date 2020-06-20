@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // function address(county,province,city) {
+        //     console.log(`${county}${city}省${city}市`);  
+        // }
+        // address('中国','甘肃','兰州');
+        // address('中国','甘肃','天水');
+        // address('中国','甘肃','定西');
+
+        function address(county) {
+            return function(province) {
+                return function(city) {
+                    console.log(`${county}${city}省${city}市`);  
+                }
+            }
+        }
+
+        //curry函数需要传入一个参数,这个参数是一个函数
+        function curry(fn) {
+            //定义变量,记录函数fn参数的个数
+            let len = fn.length;
+
+            return function temp() {
+                //收集本地传递的参数
+                let args = [...arguments];
+                if(args.length >= len) {
+                    //如果传递的参数已经满足fn苏旭的参数,就执行函数fn
+                    //但是这个参数是一个数组,需要展开
+                    return fn(...args);
+                }else{
+                    //如果参数还没有达到要求,就需要继续传入参数
+                    return function() {
+                        //再次调用temp函数,需要把之前传入的参数和本次的参数全部穿进去
+                        return temp(...args,...arguments);
+                    }
+                }
+            }
+        }
+
+        let r = curry(address)
+        
+     
+    </script>
+</body>
+</html>
