@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.0/jquery.js"></script>
+</head>
+<body>
+    <div>首页</div>
+    <ul id = 'list'></ul>
+
+    <script>
+        let list = document.querySelector('#list');
+        let oTitle =document.querySelector("title")
+        console.log(list,oTitle)
+        $.get("/json", (data) =>{
+            console.log(data)
+            oTitle.innerHTML = data.title
+            let arr = data.data;
+            let arrstr = ''
+            arr.forEach((item) => {
+                arrstr += `
+                <li>${item}</li>
+            `
+            })
+
+            list.innerHTML = arrstr
+        })
+    </script>
+</body>
+</html>
