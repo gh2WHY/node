@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let arr = ['red','blue','green','yellow'];
+
+        //接受两个参数(删除)
+        //返回被删除的某一项,会改变原数组
+        console.log(arr.splice(0,1));   //red
+        console.log(arr);
+        
+
+        //接受三个参数(添加)
+       
+        console.log( arr.splice(1,0,'pink','skyblue'));
+        console.log(arr);   //[]
+        
+        //接受三个参数(替换)
+       console.log(arr.splice(0,1,'#122','#acc'));    //['blue']
+        console.log(arr);
+        
+        //值得注意的是,slice方法永远会返回一个数组,该数组中包含被删除的项,如果没有删除的项,则返回空数组
+    </script>
+</body>
+</html>

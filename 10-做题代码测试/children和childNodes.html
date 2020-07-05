@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            MARGIN: 0;
+            padding: 0;
+            /* list-style: none; */
+        }
+    </style>
+</head>
+
+<body>
+    <ul id='list'>
+        <li>111</li>
+        <li>222</li>
+        <li>333</li>
+    </ul>
+
+    <script>
+        let oul = document.getElementById('list');
+        // let olis = oul.children;
+        // console.log(olis.length);
+        // console.log(olis);
+        // console.log(olis[1].innerHTML);
+
+
+        // console.log(oul.childNodes[3].innerHTML);
+        // console.log(oul.children[1].innerHTML);
+
+
+
+
+        let olis = oul.childNodes;
+        // console.log(olis.length);
+        // console.log(olis);
+
+        // for(let i = 0 ; i < olis.length ; i++) {
+        //     if (oul.childNodes[i].nodeType == 1) {
+        //         // nodes.childNodes[i] 是元素节点
+        //         console.log(`${i}是元素节点`);
+        //     }else if(oul.childNodes[i].nodeType == 2) {
+        //         console.log(`${i}是属性节点`);
+        //     }else {
+        //         console.log(`${i}是文本节点`);
+        //     }
+        // }
+        var a;
+        var obj = {
+            name: "why",
+            age: 18
+        }
+        // console.log(typeof 'abcdef');
+        // console.log(typeof obj);
+        // console.log(typeof 12);
+        // console.log(typeof a);
+
+
+        // console.log(Number('hello world'));
+        // console.log(Number(''));
+        // console.log(Number('0000110'));
+        // console.log(Number(true));
+        // console.log(parseInt('123asc'));  //123
+        // console.log(parseInt(''));        //NaN
+        // console.log(parseInt('0xA'));     //10(十进制数)
+        // console.log(parseInt(22.5));      //22
+        // console.log(parseInt('070'));     //56(八进制)
+        // console.log(parseInt('70'));      //70(十进制数)
+        // console.log(parseInt('AF',16));     //175
+        // console.log(parseInt('AF'));     //NaN
+
+        // console.log(parseInt('10',2));     //2
+        // console.log(parseInt('10',8));     //8
+        // console.log(parseInt('10',10));     //10
+        // console.log(parseInt('10',16));     //16
+
+        // console.log(parseFloat('123asc'));  //123
+        // console.log(parseFloat(''));        //NaN
+        // console.log(parseFloat('0xA'));     //0
+        // console.log(parseFloat(22.5));      //22.5
+        // console.log(parseFloat('22.5.344'));     //22.5
+        // console.log(parseFloat('098.034'));      //90.034
+        // console.log(parseFloat('2.12e10'));     //21200000000
+
+        // var age = 18;
+        // var strAge = age.toString();
+        // var show = true;
+        // var strShow = show.toString();
+        // console.log(strAge,strShow);   //字符串18和字符串true
+        // var num = 10;
+        // console.log(num.toString());      //'10'
+        // console.log(num.toString(2));     //'1010'
+        // console.log(num.toString(8));     //'12'
+        // console.log(num.toString(10));    //'10'
+        // console.log(num.toString(16));    //'a'
+
+        var a = 10;
+        var b = true;
+        var c = null;
+        var d ;
+        console.log(String(a));
+        console.log(String(b));
+        console.log(String(c));
+        console.log(String(d));
+    </script>//
+</body>
+
+</html>

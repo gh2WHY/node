@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .btn {
+            width: 100px;
+            height: 30px;
+            margin: 20px auto;
+            font-size: 16px;
+            line-height: 30px;
+            text-align: center;
+            background-color: #DCEDC8;
+            border: 1px solid #ccc;
+            user-select: none;
+        }
+
+        .content {
+            width: 300px;
+            height: 300px;
+            margin: auto;
+            /* border:1px solid #ccc; */
+        }
+
+        .content>ul {
+            display: flex;
+            width: 100%;
+            height: 60px;
+            border: 1px solid #ccc;
+            border-bottom: none;
+        }
+
+        .content> :last-child {
+            border-bottom: 1px solid #ccc;
+        }
+
+        .content>ul>li {
+            width: 60px;
+            height: 60px;
+            border-right: 1px solid #ccc;
+        }
+
+        .content>ul> :last-child {
+            border-right: none;
+        }
+
+        .color {
+            background-color: #AED581;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="btn">
+        点击样式1
+    </div>
+
+    <div class="btn change">
+        点击样式2
+    </div>
+    <div class="content">
+        <ul class="one">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <ul class="two">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <ul class="three">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <ul class="four">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <ul class="five">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <script>
+        let oBtn = document.querySelector('.btn');
+        let oChange = document.querySelector('.change');
+
+        let one = document.querySelector('.one');
+        let oneLis = one.getElementsByTagName('li')
+
+        let two = document.querySelector('.two');
+        let twoLis = two.getElementsByTagName('li')
+
+        let three = document.querySelector('.three');
+        let threeLis = three.getElementsByTagName('li')
+
+        let four = document.querySelector('.four');
+        let fourLis = four.getElementsByTagName('li')
+
+        let five = document.querySelector('.five');
+        let fiveLis = five.getElementsByTagName('li')
+
+        let arr = [oneLis, twoLis, threeLis, fourLis, fiveLis]
+
+        oBtn.onclick = function () {
+            for (let i = 0; i < arr.length; i++) {
+                if (i % 2 == 0) {
+                    for (let j = 0; j < oneLis.length; j++) {
+                        if (j % 2 == 0) {
+                            arr[i][j].classList.toggle('color')
+                        } else {
+                            arr[i][j].classList.remove('color')
+                        }
+                    }
+                } else {
+                    for (let j = 0; j < oneLis.length; j++) {
+                        if (j % 2 != 0) {
+                            arr[i][j].classList.toggle('color')
+                        } else {
+                            arr[i][j].classList.remove('color')
+                        }
+                    }
+                }
+            }
+        }
+
+        oChange.onclick = function () {
+            for (let i = 0; i < arr.length; i++) {
+                if (i % 2 == 0) {
+                    for (let j = 0; j < oneLis.length; j++) {
+                        if (j % 2 == 0) {
+                            arr[i][j].classList.remove('color')
+                        } else {
+                            arr[i][j].setAttribute('class', 'color')
+                        }
+                    }
+                } else {
+                    for (let j = 0; j < oneLis.length; j++) {
+                        if (j % 2 != 0) {
+                            arr[i][j].classList.remove('color')
+                        } else {
+                            arr[i][j].setAttribute('class', 'color')
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
