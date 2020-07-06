@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // let arr = [0, 1, 2, 3, 4, 5, 6];
+        // let newArr = arr.splice(0, 2)
+        // console.log(arr);
+        // console.log(newArr);
+
+        let arr = [0, 1, 2, 3, 4, 5, 6];
+        let newArr = arr.splice(1,0,"pink");
+        console.log(arr);    // [0, "pink", 1, 2, 3, 4, 5, 6]
+        console.log(newArr); //[]
+
+        let newArr2 = arr.splice(3,2,"blue","green");
+        console.log(arr);
+        console.log(newArr2);
+        
+        
+    </script>
+</body>
+
+</html>

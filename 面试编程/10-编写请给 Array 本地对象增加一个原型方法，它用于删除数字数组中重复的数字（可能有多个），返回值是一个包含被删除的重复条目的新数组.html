@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>11</td>
+        </tr>
+    </table>
+    <script>
+        Array.prototype.distinct = function(){
+            let result = new Array;
+            for(var i = 0 ; i < this.length ; i++) {
+                for(var j = i+1; j < this.length;j++) {
+                    if(this[i] == this[j]) {
+                        result.push(this.splice(j,1));
+                        j--;
+                    }
+                }
+            }
+            return result;
+        }
+        console.log(Array.prototype)
+        let arr = [0,0,0,1,2,3,2,1,2,3,4];
+        console.log(arr.distinct());
+        
+        
+    </script>
+</body>
+</html>

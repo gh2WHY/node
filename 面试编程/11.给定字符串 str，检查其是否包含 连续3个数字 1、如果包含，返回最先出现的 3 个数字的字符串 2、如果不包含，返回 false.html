@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let str = '9we12wew1e39'
+        function captureThreeNumbers(str) {
+            var s = '';
+            for (var i = 0; i < str.length; i++) {
+                if (str[i] >= 0 && str[i] <= 9) {
+                    s += str[i];
+                } else {
+                    s = '';
+                }
+                if (s.length == 3) {
+                    return s;
+                }
+            }
+            return false;
+        }
+        console.log(captureThreeNumbers(str));
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let arr = [0,0,1,2,3,2,1,2,3,4];
+        function fun(arr) {
+            let length = arr.length;
+            arr.forEach(function(index,item){
+               for(let i = index + 1 ; i < length ; i++) {
+                   if(item == arr[i]) {
+                       arr.splice(i,1);
+                    //    i--
+                   }
+               }
+                
+            })
+            return arr;
+        }
+        console.log( fun(arr));
+        
+       
+    </script>
+</body>
+</html>
