@@ -111,47 +111,54 @@ window.onload = function () {
                 oAImg = oAlert.getElementsByClassName('img')[0].getElementsByTagName('img')[0],
                 oAAuthor = oAlert.getElementsByClassName('author')[0].getElementsByTagName('span')[0],
                 oAInfo = oAlert.getElementsByClassName('info')[0].getElementsByTagName('span')[0];
-                console.log(oAlert)
-                console.log(oTitle)
-                console.log(oAImg)
-                console.log(oAAuthor)
-                console.log(oAInfo)
+
             // 获取点击弹窗需要变化元素
             let oAll = document.getElementById('all'),
                 oFrame = document.getElementById("frame"),
                 oBack = document.getElementById('back');
 
-            oUl.onclick = function () {
+
+            oUl.onclick = function (ev) {
                 ev = ev || window.event;
 
                 // 获取事件源对象
                 var target = ev.target;
-                if (target.nodeName === "B") {
-                    if (oAlert.style.display === "block") {
-                        oAlert.style.display = "none";
-                        console.log(1)
-                    } else {
-                        // oAlert.style.display = 'block';
-                        // console.log(2);
-                        let index = target.parentNode.index;
-                        let data = flyData[index % 3];
-                        // console.log(data);
-                        // oAlert.index = index;
-                        // oAlert.data = data;
-                        oAlert.src = data.src;
 
-                        //填充数据
-                        
-                        oTitle.innerHTML = `课题: ${data.title}`;
-                        oAImg.src = `./src/${data.src}/index.png`;
-                        oAAuthor.innerHTML = `主讲: ${data.author}`;
-                        oAInfo.innerHTML = `描述: ${data.desc}`;
-                        show();
+                if (target.nodeName === "B") {
+                    if (target.x) {
+                        target.x = fasle;
+                    } else {
+                        if (oAlert.style.display === "block") {
+                            hide();
+                            // console.log(1)
+                        } else {
+                            // 改变弹窗的内容
+                            var index = target.parentNode.index;
+                            var data = flyData[index % 3]
+                            oAlert.index = index;
+                            // oAlert.data = data;
+                            oAlert.src = data.src;
+                            // console.log(oAlert.src);
+
+                            // 填充数据
+                            oTitle.innerHTML = `课题: ${data.title}`;
+                            oAImg.src = `./src/${data.src}/index.png`;
+                            oAAuthor.innerHTML = `主讲: ${data.author}`;
+                            oAInfo.innerHTML = `描述: ${data.desc}`;
+
+                            // 显示
+                            show()
+                        }
                     }
                 }
+                //阻止冒泡
+                ev.cancelBubble = true;
             }
+
+
             //定义显示函数
             function show() {
+
                 oAlert.style.display = "block";
 
                 //设置初始值
@@ -179,6 +186,57 @@ window.onload = function () {
                     oAlert.style.opacity = prop
                 }
                 requestAnimationFrame(m);
+            }
+
+            //定义隐藏函数
+            function hide() {
+                if (oAlert.style.display === 'block' && !oAlert.timer) {
+                    oAlert.timer = true;
+                    // 确定弹出的初始值
+                    oAlert.style.display = 'block';
+                    oAlert.style.transform = `rotateY(0deg) scale(1)`;
+                    oAlert.style.opacity = 1;
+
+                    // 动画
+                    var time = 300; // 动画完成的时间
+                    var sTime = new Date() // 获取动画开始的时间
+                    function m() {
+                        var prop = (new Date() - sTime) / time; // 时间比例 0-1
+
+                        // 判断终止 
+                        if (prop >= 1) {
+                            // 超出拉回
+                            prop = 1;
+                            oAlert.style.display = 'none';
+                            oAlert.timer = false
+                        } else {
+                            requestAnimationFrame(m)
+                        }
+                        oAlert.style.transform = `rotateY(${180 * prop}deg) scale(${1 - prop})`
+                        oAlert.style.opacity = 1 - prop
+                    }
+                    requestAnimationFrame(m)
+                }
+            }
+
+            //设置点击页面的任何位置,弹窗隐藏
+            document.onclick = function () {
+                hide();
+            }
+
+            //点击弹窗,切换页面
+            oAlert.onclick = function (ev) {
+                ev = ev || window.event
+                ev.cancelBubble = true;
+                oAll.className = 'left'
+
+                var data = flyData[this.index % 3]
+                oFrame.src = `./src/${data.src}/index.html`
+            }
+
+            // oBack.onclick
+            oBack.onclick = function () {
+                oAll.className = ''
             }
         })()
 

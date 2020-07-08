@@ -26,7 +26,7 @@ var flyData = [
       title: "测试一下",
       desc: "你打我啊",
       time: "2020-6-28",
-      src: "3D Drag"
+      src: "aa"
     },
     {
       type: "Vue",
@@ -34,6 +34,6 @@ var flyData = [
       title: "我是梦想",
       desc: "天下第一大美女",
       time: "2020-6-28",
-      src: "3D Drag"
+      src: "bb"
     }
   ]

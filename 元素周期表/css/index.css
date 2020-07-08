@@ -26,6 +26,7 @@ body {
 }
 #all.left {
   left: -100%;
+  background-color: #ccc;
 }
 #all #main {
   float: left;
@@ -68,7 +69,7 @@ body {
   width: 122px;
   height: 162px;
 }
-#all #main #list ul li #title {
+#all #main #list ul li .title {
   margin-top: 10px;
   font-size: 50px;
   font-weight: bold;
@@ -197,9 +198,9 @@ body {
 }
 #all #main #back {
   position: absolute;
-  right: -70px;
+  right: -100px;
   bottom: 20px;
-  z-index: 99;
+  z-index: 99999999;
   height: 30px;
   line-height: 30px;
   border: 1px solid #7fffff;
@@ -216,9 +217,6 @@ body {
 #all #frame {
   overflow: auto;
   float: left;
-  position: absolute;
-  right: 0;
-  z-index: 80;
   width: 50%;
   height: 100%;
 }
