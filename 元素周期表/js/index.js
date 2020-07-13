@@ -49,26 +49,6 @@ window.onload = function () {
             setTimeout(Grid, 0)
         })();
 
-
-        // 5*5*5排列
-        function Grid() {
-            //确定每个li之间水平垂直以及Z轴之间的间隔
-            let disX = 350,
-                disY = 350,
-                disZ = 800;
-            //循环每一个li,确定li的位置
-            for (let i = 0; i <= len; i++) {
-                let oli = alis[i];
-                // console.log(oli.x);
-
-                // 通过li的位置计算li的偏移量
-                let x = (oli.x - 2) * disX;
-                let y = (oli.y - 2) * disY;
-                let z = (oli.z - 2) * disZ;
-                oli.style.transform = `translate3d(${x}px, ${y}px , ${z}px)`;
-            }
-        }
-
         // 拖拽,缩放
         (function () {
             // 信号量保存初始值
@@ -221,7 +201,9 @@ window.onload = function () {
 
             //设置点击页面的任何位置,弹窗隐藏
             document.onclick = function () {
-                hide();
+                if (oAlert.style.display === "block") {
+                    hide();
+                }
             }
 
             //点击弹窗,切换页面
@@ -238,7 +220,134 @@ window.onload = function () {
             oBack.onclick = function () {
                 oAll.className = ''
             }
+        })();
+
+
+        //页面左下角四个按钮设置
+        (function () {
+            let lis = document.querySelector('#btn').querySelector('ul').getElementsByTagName('li')
+            // console.log(btns);
+            lis[0].onclick = table;
+            lis[3].onclick = Grid;
         })()
 
+        //table
+        function table() {
+            // 计算坐标
+            let n = Math.ceil(len / 18) + 2; // 计算一共排列多好行
+            let midY = n / 2 - 0.5; // 计算ul所在的行
+            let midX = 18 / 2 - 0.5; // 计算ul所在的列
+
+            let  disY = 210,
+                disX = 170;
+
+            let arr = [{
+                    x: 0,
+                    y: 0
+                },
+                {
+                    x: 17,
+                    y: 0
+                },
+                {
+                    x: 0,
+                    y: 1
+                },
+                {
+                    x: 1,
+                    y: 1
+                },
+                {
+                    x: 12,
+                    y: 1
+                },
+                {
+                    x: 13,
+                    y: 1
+                },
+                {
+                    x: 14,
+                    y: 1
+                },
+                {
+                    x: 15,
+                    y: 1
+                },
+                {
+                    x: 16,
+                    y: 1
+                },
+                {
+                    x: 17,
+                    y: 1
+                },
+                {
+                    x: 0,
+                    y: 2
+                },
+                {
+                    x: 1,
+                    y: 2
+                },
+                {
+                    x: 12,
+                    y: 2
+                },
+                {
+                    x: 13,
+                    y: 2
+                },
+                {
+                    x: 14,
+                    y: 2
+                },
+                {
+                    x: 15,
+                    y: 2
+                },
+                {
+                    x: 16,
+                    y: 2
+                },
+                {
+                    x: 17,
+                    y: 2
+                }
+            ];
+
+            for(let i = 0 ; i < len ; i++ ) {
+                if(i < 18) {
+                    x = arr[i].x;
+                    y = arr[i].y;
+                }else {
+                    x = i % 18;
+                    y = Math.floor(i / 18) + 2;
+                    console.log(x);
+                    
+                }
+                alis[i].style.transform = `translate3d(${(x - midX) * disX}px, ${(y - midY) * disY}px , 0px)`;
+            }
+
+            
+        }
+
+        // 5*5*5排列
+        function Grid() {
+            //确定每个li之间水平垂直以及Z轴之间的间隔
+            let disX = 350,
+                disY = 350,
+                disZ = 800;
+            //循环每一个li,确定li的位置
+            for (let i = 0; i <= len; i++) {
+                let oli = alis[i];
+                // console.log(oli.x);
+
+                // 通过li的位置计算li的偏移量
+                let x = (oli.x - 2) * disX;
+                let y = (oli.y - 2) * disY;
+                let z = (oli.z - 2) * disZ;
+                oli.style.transform = `translate3d(${x}px, ${y}px , ${z}px)`;
+            }
+        }
     })()
 }
