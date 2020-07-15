@@ -52,27 +52,88 @@ window.onload = function () {
         // 拖拽,缩放
         (function () {
             // 信号量保存初始值
-            let roX = 0,
+            var roX = 0,
                 roY = 0,
                 trZ = -2000;
 
             // 通过事件禁止文字被选中
             document.onselectstart = function () {
-                    return false
+                return false
+            }
+
+            // 鼠标按下
+            document.onmousedown = function (ev) {
+                    ev = ev || window.event;
+                    let lastX = ev.clientX,
+                        lastY = ev.clientY,
+                        x_ = 0,
+                        y_ = 0; // 存储移动的插值
+                    let ifMove = false; // 判断有没有移动
+                    let ifTime = new Date(); // 鼠标按下的时间戳
+                    // 用于解决当鼠标按下和抬起在同一元素上
+                    if (ev.target.nodeName === 'B') {
+                        var thisLi = ev.target
+                    }
+
+                    // 鼠标移动 
+                    this.onmousemove = function (ev) {
+                        ev = ev || window.event;
+
+                        ifMove = true; // 鼠标移动了
+                        x_ = ev.clientX - lastX;
+                        y_ = ev.clientY - lastY;
+
+                        // 根据位移确定旋转度数
+                        roY += x_ * 0.1;
+                        roX -= y_ * 0.1;
+
+                        oUl.style.transform = ` translateZ(${trZ}px) rotateX(${roX}deg) rotateY(${roY}deg)`;
+
+                        // 重新赋值
+                        lastX = ev.clientX;
+                        lastY = ev.clientY;
+                    }
+
+                    // 鼠标松开
+                    this.onmouseup = function (ev) {
+                        if (ifMove && (ev.target === thisLi) || (new Date() - ifTime) > 500) {
+                            if (ev.target.nodeName === 'B') {
+                                thisLi.goudan = true
+                            }
+                        }
+                        // 清楚鼠标移动事件
+                        this.onmousemove = null
+                        // 计算缓冲
+                        function m() {
+                            // 通过缓冲系数处理缓冲距离
+                            x_ *= 0.9;
+                            y_ *= 0.9;
+                            // 根据位移确定旋转度数
+                            roY += x_ * 0.1;
+                            roX -= y_ * 0.1;
+                            oUl.style.transform = ` translateZ(${trZ}px) rotateX(${roX}deg) rotateY(${roY}deg)`;
+                            // 如果条件满足,清楚清除定时器
+                            if (Math.abs(x_) < 0.1 && Math.abs(y_) < 0.1) return
+
+                            requestAnimationFrame(m)
+                        }
+                        requestAnimationFrame(m)
+                    }
                 }
 
 
+                // 滚轮滚动改变Z轴变化
                 ! function (fn) {
                     if (document.onmousewheel === undefined) {
                         // 火狐浏览
                         document.addEventListener("DOMMouseScroll", function (e) {
-                            let d = -e.detail / 3
+                            var d = -e.detail / 3
                             fn(d)
                         }, false)
                     } else {
                         // 主流浏览器
                         document.onmousewheel = function (e) {
-                            let d = e.wheelDelta / 120;
+                            var d = e.wheelDelta / 120;
                             fn(d)
                         }
                     }
@@ -80,6 +141,8 @@ window.onload = function () {
                     trZ += d * 100;
                     oUl.style.transform = ` translateZ(${trZ}px) rotateX(${roX}deg) rotateY(${roY}deg)`
                 })
+
+
         })();
 
 
@@ -228,7 +291,9 @@ window.onload = function () {
             let lis = document.querySelector('#btn').querySelector('ul').getElementsByTagName('li')
             // console.log(btns);
             lis[0].onclick = table;
+            lis[1].onclick = sphere;
             lis[3].onclick = Grid;
+            lis[2].onclick = Helix;
         })()
 
         //table
@@ -238,7 +303,7 @@ window.onload = function () {
             let midY = n / 2 - 0.5; // 计算ul所在的行
             let midX = 18 / 2 - 0.5; // 计算ul所在的列
 
-            let  disY = 210,
+            let disY = 210,
                 disX = 170;
 
             let arr = [{
@@ -315,22 +380,64 @@ window.onload = function () {
                 }
             ];
 
-            for(let i = 0 ; i < len ; i++ ) {
-                if(i < 18) {
+            for (let i = 0; i < len; i++) {
+                if (i < 18) {
                     x = arr[i].x;
                     y = arr[i].y;
-                }else {
+                } else {
                     x = i % 18;
                     y = Math.floor(i / 18) + 2;
                     console.log(x);
-                    
+
                 }
                 alis[i].style.transform = `translate3d(${(x - midX) * disX}px, ${(y - midY) * disY}px , 0px)`;
             }
 
-            
+
         }
 
+        //sphere
+        function sphere() {
+            let arr = [1,5,7,13,20,25,20,15,13,5,1];
+            let length = arr.length;
+            let xDeg = 180 / (length - 1); // 计算每一层li绕X轴旋转多少度
+            let sum = 0 ;
+            arr.forEach((item,index) => {
+                sum += item;
+            })
+            console.log(sum)
+            for (let i = 0; i < len; i++) {
+                let numC = 0; //存储当前li位于多少层
+                let numG = 0; //存储li位于当前层的位置
+                let arrSum = 0; //用来确定li之前所在层的总数
+
+                //循环判断li的层以及是层内的第几个
+                for (let j = 0; j < length; j++) {
+                    arrSum += arr[j];
+                    if (i < arrSum) {
+                        numC = j;
+                        numG = i - (arrSum - arr[j]);
+                        break;
+                    }
+                }
+                let yDeg = 360 / arr[numC];
+                alis[i].style.transform = `rotateY(${(numG + 1.2) * yDeg}deg) rotateX(${90 - numC * xDeg}deg) translateZ(800px)`;
+
+            }
+        }
+
+        //Helix
+        function Helix() {
+            let h = 4; //总共有4圈
+            let tY = 7; //每个li上下相差7
+            let num = Math.round(len / h); // 计算每一圈多少个li
+            let deg = 360 / num; //计算每一个li的旋转度数
+            var mid = len / 2 - 0.5; // 确定ul的位置
+
+            for (let i = 0; i < len; i++) {
+                alis[i].style.transform = `rotateY(${i * deg}deg)  translateY(${tY * (i - mid)}px) translateZ(800px)`
+            }
+        }
         // 5*5*5排列
         function Grid() {
             //确定每个li之间水平垂直以及Z轴之间的间隔
